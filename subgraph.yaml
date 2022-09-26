@@ -1,4 +1,5 @@
-specVersion: 0.0.1
+specVersion: 0.0.4
+description: USDT subgraph API
 schema:
   file: ./schema.graphql
 dataSources:
@@ -6,21 +7,19 @@ dataSources:
     name: Token
     network: mainnet
     source:
-      address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
-      abi: Token
+      address: "0xdac17f958d2ee523a2206206994597c13d831ec7"
+      abi: USDT
+      startBlock: 15315569
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
-        - AdminChanged
-        - Upgraded
+        - Transfer
       abis:
-        - name: Token
-          file: ./abis/Token.json
+        - name: USDT
+          file: ./abis/USDT.json
       eventHandlers:
-        - event: AdminChanged(address,address)
-          handler: handleAdminChanged
-        - event: Upgraded(address)
-          handler: handleUpgraded
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
       file: ./src/token.ts

@@ -1,6 +1,16 @@
-type ExampleEntity @entity {
+type Exchange @entity {
+  # Transaction hash
   id: ID!
-  count: BigInt!
-  previousAdmin: Bytes! # address
-  newAdmin: Bytes! # address
+
+  # sender of token
+  transferFrom: String!
+
+  # receiver of token
+  transferTo: String!
+
+  # block number of transaction
+  blockNumber: BigInt!
+
+  # amount transfered
+  amount: BigInt!
 }
